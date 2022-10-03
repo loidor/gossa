@@ -10,7 +10,8 @@
     <link rel="manifest" href='data:application/manifest+json,{"name":"{{.Title}}","short_name":"{{.Title}}","description":"  ","icons":[{"src":"data:image/svg+xml;base64,favicon_will_be_here","sizes":"150x150","type":"image/svg+xml"}],"background":"rgb(45,52,54)","theme_color":"rgb(45,52,54)","display":"standalone"}' />
 
     <title>{{.Title}}</title>
-    <link href="data:image/svg+xml;base64,favicon_will_be_here" rel="icon" type="image/svg+xml" />
+<!--<link href="data:image/svg+xml;base64,favicon_will_be_here" rel="icon" type="image/svg+xml" />-->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style type="text/css">css_will_be_here</style>
     <script>
         window.ro = {{.Ro}}
@@ -24,16 +25,16 @@
         <tr><td>Arrows/Enter</td><td>browse files/folders and pictures</td></tr>
         <tr><td>Ctrl/Meta + Enter</td><td>download selected item as archive</td></tr>
         <tr><td>Ctrl/Meta + C</td><td>copy URL to clipboard</td></tr>
-        <tr><td>Ctrl/Meta + E</td><td>rename item</td></tr>
-        <tr><td>Ctrl/Meta + Backspace</td><td>delete item</td></tr>
+<!--    <tr><td>Ctrl/Meta + E</td><td>rename item</td></tr>-->
+<!--    <tr><td>Ctrl/Meta + Backspace</td><td>delete item</td></tr>-->
         <tr><td>Ctrl/Meta + U</td><td>upload new file/folder</td></tr>
-        <tr><td>Ctrl/Meta + M</td><td>create a new directory</td></tr>
-        <tr><td>Ctrl/Meta + X</td><td>cut selected path</td></tr>
-        <tr><td>Ctrl/Meta + V</td><td>paste previously selected paths to directory</td></tr>
+<!--    <tr><td>Ctrl/Meta + M</td><td>create a new directory</td></tr>-->
+<!--    <tr><td>Ctrl/Meta + X</td><td>cut selected path</td></tr>-->
+<!--    <tr><td>Ctrl/Meta + V</td><td>paste previously selected paths to directory</td></tr>-->
         <tr><td>Ctrl + click</td><td>download selected item as archive</td></tr>
-        <tr><td>click file icon </td><td>rename item</td></tr>
-        <tr><td>double click file icon</td><td>delete item</td></tr>
-        <tr><td>drag-and-drop item on UI</td><td>move item</td></tr>
+<!--    <tr><td>click file icon </td><td>rename item</td></tr>-->
+<!--    <tr><td>double click file icon</td><td>delete item</td></tr>-->
+<!--    <tr><td>drag-and-drop item on UI</td><td>move item</td></tr>-->
         <tr><td>drag-and-drop external item</td><td>upload file/folders</td></tr>
         <tr><td>any other letter</td><td>fuzzy search</td></tr>
     </tbody></table></div>
@@ -47,9 +48,10 @@
 
     <div id="icHolder">
         {{if not .Ro}}
+            <!-- Create new icon for upload -->
             <div style="display:none;" onclick="document.getElementById('clickupload').click()" class="ic icon-large-upload manualUp"></div>
-            <div onclick="window.displayPad()" class="ic icon-large-pad" title="Create TXT file"></div>
-            <div class="ic icon-large-folder" onclick="window.mkdirBtn()" title="Create Folder"></div>
+<!--        <div onclick="window.displayPad()" class="ic icon-large-pad" title="Create TXT file"></div>-->
+<!--        <div class="ic icon-large-folder" onclick="window.mkdirBtn()" title="Create Folder"></div>-->
         {{end}}
     </div>
 
@@ -59,7 +61,8 @@
     <table id="linkTable">
     {{range .RowsFolders}}
         <tr>
-            <td class="iconRow"><i ondblclick="return rm(event)" onclick="return rename(event)" class="btn icon icon-{{.Ext}} icon-blank"></i></td>
+<!--        <td class="iconRow"><i ondblclick="return rm(event)" onclick="return rename(event)" class="btn icon icon-{{.Ext}} icon-blank"></i></td>-->
+            <td class="iconRow"><i class="btn icon icon-{{.Ext}} icon-blank"></i></td>
             <td class="file-size"><code>{{.Size}}</code></td>
             <td class="arrow"><div class="arrow-icon"></div></td>
             <td class="display-name"><a class="list-links" oncontextmenu="return setCursorTo(event.target.innerText)" onclick="return onClickLink(event)" href="{{.Href}}">{{.Name}}</a></td>
@@ -67,7 +70,8 @@
     {{end}}
     {{range .RowsFiles}}
         <tr>
-            <td class="iconRow"><i ondblclick="return rm(event)" onclick="return rename(event)" class="btn icon icon-{{.Ext}} icon-blank"></i></td>
+<!--        <td class="iconRow"><i ondblclick="return rm(event)" onclick="return rename(event)" class="btn icon icon-{{.Ext}} icon-blank"></i></td>-->
+            <td class="iconRow"><i class="btn icon icon-{{.Ext}} icon-blank"></i></td>
             <td class="file-size"><code>{{.Size}}</code></td>
             <td class="arrow"><div class="arrow-icon"></div></td>
             <td class="display-name"><a class="list-links" oncontextmenu="return setCursorTo(event.target.innerText)" onclick="return onClickLink(event)" href="{{.Href}}">{{.Name}}</a></td>
@@ -77,8 +81,10 @@
 </body>
 <div id="upBar" class="bar">
     <span style="display: none;" class="barName" id="upBarName"></span>
+    <!-- Change colour upload bar here -->
     <div style="display: none; background-color: green;" class="barPc" id="upBarPc">1%</div>
 </div>
+<!-- Create OK and NOTOK icons -->
 <div id="ok" class="notif icon-large-ok"></div>
 <div id="sad" class="notif icon-large-sad-server"></div>
 </html>

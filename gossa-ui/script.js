@@ -144,9 +144,9 @@ function rpc (call, args, cb) {
   xhr.onerror = () => flicker(sadBadge)
 }
 
-const mkdirCall = (path, cb) => rpc('mkdirp', [prependPath(path)], cb)
-const rmCall = (path1, cb) => rpc('rm', [prependPath(path1)], cb)
-const mvCall = (path1, path2, cb) => rpc('mv', [path1, path2], cb)
+//const mkdirCall = (path, cb) => rpc('mkdirp', [prependPath(path)], cb)
+//const rmCall = (path1, cb) => rpc('rm', [prependPath(path1)], cb)
+//const mvCall = (path1, path2, cb) => rpc('mv', [path1, path2], cb)
 
 // File upload
 let totalDone = 0
@@ -283,11 +283,12 @@ document.ondrop = e => {
   let t = getLink().firstChild
 
   // move to a folder
-  if (draggingSrc && t) {
-    const dest = t.innerHTML + draggingSrc
-    ensureMove() || mvCall(prependPath(draggingSrc), prependPath(dest), refresh)
+//  if (draggingSrc && t) {
+//    const dest = t.innerHTML + draggingSrc
+//    ensureMove() || mvCall(prependPath(draggingSrc), prependPath(dest), refresh)
   // ... or upload
-  } else if (e.dataTransfer.items.length) {
+//  } else 
+  if (e.dataTransfer.items.length) {
     Array.from(e.dataTransfer.items).forEach(pushEntry)
   }
 
@@ -298,7 +299,7 @@ document.ondrop = e => {
 
 // Notepad
 const isEditorMode = () => editor.style.display === 'block'
-const textTypes = ['.txt', '.rtf', '.md', '.markdown', '.log', '.yaml', '.yml']
+//const textTypes = ['.txt', '.rtf', '.md', '.markdown', '.log', '.yaml', '.yml']
 const isTextFile = src => src && textTypes.find(type => src.toLocaleLowerCase().includes(type))
 let fileEdited
 
@@ -716,23 +717,23 @@ document.body.addEventListener('keydown', e => {
       case 'KeyH':
         return prevent(e) || isRo() || helpToggle()
 
-      case 'KeyX':
-        return prevent(e) || isRo() || onCut()
+//      case 'KeyX':
+//        return prevent(e) || isRo() || onCut()
 
       case 'KeyR':
         return prevent(e) || refresh()
 
-      case 'KeyV':
-        return prevent(e) || isRo() || ensureMove() || onPaste()
+//      case 'KeyV':
+//        return prevent(e) || isRo() || ensureMove() || onPaste()
 
-      case 'Backspace':
-        return prevent(e) || isRo() || window.rm(e)
+//      case 'Backspace':
+//        return prevent(e) || isRo() || window.rm(e)
 
-      case 'KeyE':
-        return prevent(e) || isRo() || window.rename(e)
+//      case 'KeyE':
+//        return prevent(e) || isRo() || window.rename(e)
 
-      case 'KeyM':
-        return prevent(e) || isRo() || window.mkdirBtn()
+//      case 'KeyM':
+//()        return prevent(e) || isRo() || window.mkdirBtn()
 
       case 'KeyU':
         return prevent(e) || isRo() || manualUpload.click()

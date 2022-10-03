@@ -14,7 +14,7 @@ var scriptJs string
 //go:embed gossa-ui/style.css
 var styleCss string
 
-//go:embed gossa-ui/favicon.svg
+//go:embed gossa-ui/favicon.ico
 var faviconSvg []byte
 
 //go:embed gossa-ui/ui.tmpl
